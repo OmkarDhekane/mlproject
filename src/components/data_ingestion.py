@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
 
 # Define the data ingestion configuration class
 @dataclass
@@ -54,6 +55,10 @@ if __name__ == "__main__":
     train_data_path, test_data_path,_= obj.initiate_data_ingestion()
 
     transform = DataTransformation()    
-    transform.initiate_data_transformation(train_data_path, test_data_path)
+    train_array, test_array, _ = transform.initiate_data_transformation(train_data_path, test_data_path)
+    
+    model_trainer_obj = ModelTrainer()
+    best_model_r2score = model_trainer_obj.initiate_model_trainer(train_array, test_array, preprocessor_path=None)
+    print(f"Best Model R2 Score: {best_model_r2score}")
 
-        
+            
