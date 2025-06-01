@@ -6,7 +6,6 @@ from src.exception import CustomException
 from src.logger import logging
 
 
-
 from sklearn.metrics import r2_score
 
 from src.utils import save_object
@@ -16,6 +15,7 @@ from src.components.tuner import Tuner
 @dataclass
 class ModelTrainerConfig:
     trained_model_file_path: str = os.path.join('artifacts', 'best_model.pkl')
+
 
 
 class ModelTrainer:
